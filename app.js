@@ -7,7 +7,8 @@ var express = require('express'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
-    lessMiddleware = require('less-middleware');
+    lessMiddleware = require('less-middleware'),
+    errorHandler = require('errorhandler');
 
 var app = express();
 
@@ -17,12 +18,12 @@ app.set('view engine', 'ejs');
 app.use(morgan());
 app.use(bodyParser());
 app.use(methodOverride());
-app.use(less-middleware(__dirname, 'public'));
+app.use(lessMiddleware(__dirname, 'public'));
 app.use(express.static(__dirname, 'public'));
 
 var env = process.env.NODE_ENV || 'development';
-if ('development' == env) {
-    app.use(express.errorHandler());
+if ('development' === env) {
+    app.use(errorHandler());
 }
 
 app.get('/', routes.index);
