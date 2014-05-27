@@ -9,7 +9,11 @@
     "express": ">=4.0.0",
     "ejs": "*",
     "less-middleware": "*",
-    "socket.io":"*",
-    "mongoose":"*"
+    "socket.io": "*",
+    "mongoose": "*",
+    "morgan": "*",
+    "body-parser": "*",
+    "method-override": "*",
+    "less-middleware": "*"
   }
 }

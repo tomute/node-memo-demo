@@ -1,21 +1,25 @@
 "use strict";
-var express = require('express')
-  , routes = require('./routes')
-  , http = require('http')
-  , path = require('path');
+
+var express = require('express'),
+    routes = require('./routes'),
+    http = require('http'),
+    path = require('path'),
+    morgan = require('morgan'),
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
+    lessMiddleware = require('less-middleware');
 
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
+app.use(morgan());
+app.use(bodyParser());
+app.use(methodOverride());
 app.use(app.router);
-app.use(require('less-middleware')(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(less-middleware(__dirname, 'public'));
+app.use(express.static(__dirname, 'public'));
 
 var env = process.env.NODE_ENV || 'development';
 if ('development' == env) {
