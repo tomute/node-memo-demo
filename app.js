@@ -18,8 +18,8 @@ app.set('view engine', 'ejs');
 app.use(morgan());
 app.use(bodyParser());
 app.use(methodOverride());
-app.use(lessMiddleware(__dirname, 'public'));
-app.use(express.static(__dirname, 'public'));
+app.use(lessMiddleware(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 var env = process.env.NODE_ENV || 'development';
 if ('development' === env) {
