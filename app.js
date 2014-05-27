@@ -17,7 +17,6 @@ app.set('view engine', 'ejs');
 app.use(morgan());
 app.use(bodyParser());
 app.use(methodOverride());
-app.use(app.router);
 app.use(less-middleware(__dirname, 'public'));
 app.use(express.static(__dirname, 'public'));
 
